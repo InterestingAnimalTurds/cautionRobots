@@ -163,8 +163,8 @@ void loop() {
 
 void forwardFunc(){
 
-    encoder1.count = 0; 
-    encoder2.count = 0; 
+    // encoder1.count = 0; 
+    // encoder2.count = 0; 
 
   // Right Forwar
      analogWrite(motor1.in1, 0); 
@@ -178,7 +178,7 @@ void forwardFunc(){
 
       // while(encoder2.count < targetSteps) {
       //   Serial.println(encoder2.count);
-
+      
       // }
       delay(100); 
       stopWheels();

@@ -70,7 +70,6 @@ while(1):
                 img = cv2.rectangle(img, (x, y), (x+w, y+h), (255, 255, 0), 2)
                 
 
-
                 x_d = (((2*y+h)/2)-68) * 0.06
                 y_d = (((2*x+w)/2)-260) * 0.075
                 s = 'x   :'+ str(int(x)) + ' y   :'+ str(int(y))
