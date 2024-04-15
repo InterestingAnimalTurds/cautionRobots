@@ -170,9 +170,9 @@ void forwardFunc(){
      analogWrite(motor1.in1, 0); 
      analogWrite(motor1.in2, 255); 
     //  delay(100); 
-      delay(100);
+      delay(200);
       stopWheels();
-      delay(400); 
+      delay(200); 
       analogWrite(motor2.in1, 255);
       analogWrite(motor2.in2, 0); 
 
@@ -180,7 +180,7 @@ void forwardFunc(){
       //   Serial.println(encoder2.count);
       
       // }
-      delay(100); 
+      delay(200); 
       stopWheels();
 
 }
@@ -199,7 +199,7 @@ void leftFunc(){
     analogWrite(motor1.in2, 255); 
     analogWrite(motor2.in1, 0);
     analogWrite(motor2.in2, 255); 
-    delay(200);
+    delay(300);
     stopWheels();
 
 }
@@ -213,7 +213,7 @@ void rightFunc(){
 
     analogWrite(motor2.in1, 255);
     analogWrite(motor2.in2, 0); 
-      delay(200);
+      delay(300);
     stopWheels();
 
   
