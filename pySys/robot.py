@@ -55,7 +55,7 @@ class Robot:
 
     def new_walk(self,sock,threhold):
 
-        message = self.boarderCheck(threhold)
+        message = self.in_range_circle(threhold)
         sent = sock.sendto(message.encode(), self.addr)
 
 
@@ -156,7 +156,37 @@ class Robot:
         
     
 
+    def in_range_circle(self,threshold):
+        centerX = self.scene.centerX
+        centerY = self.scene.centerY
+        radius = self.scene.radius
+
+        distance_to_center = np.sqrt((self.locationCenterX - centerX)**2 + (self.locationCenterY - centerY)**2)
+        
+        if distance_to_center > radius - threshold:
+            
+            delta_x = centerX - self.locationCenterX
+            delta_y = centerY - self.locationCenterY
+            angle_radians = np.arctan2(delta_y, delta_x)
+            self.targetDirection = np.degrees(angle_radians)
+            self.targetDirection = (self.targetDirection + 360) % 360
+
+            currentDirection = (self.direction + 360) % 360
+            directionDifference = ut.calculate_angle_difference(self.targetDirection, currentDirection)
+            print(f"Current Direction: {currentDirection}, Difference: {directionDifference}")
+
+            if abs(directionDifference) > 60:
+                self.inTurningCounts += 1
+                return "LEFT"  
+            else:
+                # 方向差距足够小，可以直行
+                self.inTurningCounts = 0
+                return "FORWARD"
+            
+        else:
+            return "FORWARD"
 
 
+        
 #Utilitys:
     

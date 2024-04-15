@@ -12,8 +12,8 @@ import setting as st
 import visionAnalyze as va
 
 #Scene Setup:
-scene_0 = Scene(510,254,350,150,400,253)
-scene_1 = Scene(230,100,350,150,149,230)
+scene_0 = Scene(430,258,130)
+scene_1 = Scene(112,239,130)
 
 #Robots
 robot_0 = Robot(0,"192.168.8.218",scene_0)
@@ -85,7 +85,7 @@ def wandering():
     locationCheck(robots)
 
     for robot in robots:
-        robot.new_walk(sock,130)
+        robot.new_walk(sock,80)
         time.sleep(0.3)
         robot.walk_by_message(sock,"1")
 
