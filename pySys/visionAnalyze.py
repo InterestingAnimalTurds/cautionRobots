@@ -27,22 +27,33 @@ def calculate_contour_centers(contours):
             centers.append((centerX, centerY))
     return centers
 
-def find_missing_centers(pre_centers, post_centers, threshold=20):
+def find_missing_centers(pre_centers, post_centers, threshold=50):
     miss_centers = []
-  
     for pre_center in pre_centers:
         found = False
-        if len(post_centers) == 0:
-             print("lenth0")
-             miss_centers.append(pre_centers)
 
-        else:
-            for post_center in post_centers:
-                distance = st.np.sqrt((pre_center[0] - post_center[0]) ** 2 + (pre_center[1] - post_center[1]) ** 2)
-                if distance < threshold:
-                    found = True
-                    break  
-                if not found:
-                    miss_centers.append(pre_center)
+        for post_center in post_centers:
+            distance = st.np.sqrt((pre_center[0] - post_center[0]) ** 2 + (pre_center[1] - post_center[1]) ** 2)
+            if distance < threshold:
+                found = True
+                break  
+        if not found:
+
+            miss_centers.append(pre_center)
+
+            print(f"found miss centers -> {pre_center}")
     return miss_centers
 
+# def find_missing_centers(pre_centers, post_centers, threshold=50):
+#     missed_centers = []
+#     for pre_center in pre_centers:
+#         found = False
+#         for post_center in post_centers:
+#             distance = st.np.sqrt((pre_center[0] - post_center[0]) ** 2 + (pre_center[1] - post_center[1]) ** 2)
+#             if distance < threshold:
+#                 found = True
+#                 break
+#         if not found:
+#             missed_centers.append(pre_center)
+#             print(f"Found missed center -> {pre_center}")
+#     return missed_centers

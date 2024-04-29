@@ -25,10 +25,13 @@ y_d=0.0
 x_d_p=0.0
 y_d_p=0.0
 
+pts1 = np.float32([[93, 64], [77, 376], [553, 54], [523, 435]])
+# 目标点坐标
+pts2 = np.float32([[93, 64], [93,376], [553, 64], [553, 376]])
 
 
 
-
+Pmatrix = cv2.getPerspectiveTransform(pts1, pts2)
 
 
 distanceThrehold = 50
@@ -39,6 +42,7 @@ while(1):
     height, width = img.shape[:2]
     #converting frame(img i.e BGR) to HSV (hue-saturation-value)
 
+    #img = cv2.warpPerspective(img, Pmatrix, (720, 720))
     hsv=cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
     infrared_lower=np.array([0,0,238],np.uint8)
     infrared_upper=np.array([88,255,255],np.uint8)
@@ -46,7 +50,6 @@ while(1):
     #Morphological transformation, Dilation  	
     kernal = np.ones((5 ,5), "uint8")
     infrared=cv2.dilate(infrared,kernal)
-
 
 
 			
@@ -72,7 +75,7 @@ while(1):
 
                 x_d = (((2*y+h)/2)-68) * 0.06
                 y_d = (((2*x+w)/2)-260) * 0.075
-                s = 'x   :'+ str(int(x)) + ' y   :'+ str(int(y))
+                s =  str(int(x)) +','+ str(int(y))
                 cv2.putText(img, s, (x-20, y-5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, cv2.LINE_AA)
               
 

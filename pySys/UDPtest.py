@@ -5,8 +5,8 @@ import cv2
 import numpy as np
 # 创建一个窗口
 cv2.namedWindow('window')
-
-esp32_ip = "192.168.8.215"
+#192.168.8.210
+esp32_ip = "192.168.8.210"
 esp32_port = 5555
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
